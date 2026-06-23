@@ -1,0 +1,136 @@
+{
+  "numFailedTestSuites": 1,
+  "numFailedTests": 1,
+  "numPassedTestSuites": 0,
+  "numPassedTests": 2,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 1,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 1,
+  "numTotalTestSuites": 1,
+  "numTotalTests": 5,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1782247075194,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "duration": 3,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "add works",
+          "invocations": 1,
+          "location": {
+            "column": 1,
+            "line": 2
+          },
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "add works"
+        },
+        {
+          "ancestorTitles": [],
+          "duration": 1,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "sub works",
+          "invocations": 1,
+          "location": {
+            "column": 1,
+            "line": 3
+          },
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "sub works"
+        },
+        {
+          "ancestorTitles": [],
+          "duration": 0,
+          "failureDetails": [
+            {
+              "matcherResult": {
+                "actual": 2,
+                "expected": 3,
+                "message": "expect(received).toBe(expected) // Object.is equality\n\nExpected: 3\nReceived: 2",
+                "name": "toBe",
+                "pass": false
+              }
+            }
+          ],
+          "failureMessages": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 3\nReceived: 2\n    at Object.toBe (/repo/src/math.test.js:4:50)\n    at Promise.then.completed (/repo/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/repo/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/repo/node_modules/jest-circus/build/run.js:316:40)\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at _runTest (/repo/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/repo/node_modules/jest-circus/build/run.js:126:9)\n    at run (/repo/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/repo/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/repo/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/repo/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/repo/node_modules/jest-runner/build/runTest.js:444:34)"
+          ],
+          "fullName": "this one fails",
+          "invocations": 1,
+          "location": {
+            "column": 1,
+            "line": 4
+          },
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "this one fails"
+        },
+        {
+          "ancestorTitles": [],
+          "duration": null,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "skipped one",
+          "invocations": 1,
+          "location": {
+            "column": 6,
+            "line": 5
+          },
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "pending",
+          "title": "skipped one"
+        },
+        {
+          "ancestorTitles": [],
+          "duration": null,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "a todo test",
+          "invocations": 1,
+          "location": {
+            "column": 6,
+            "line": 6
+          },
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "todo",
+          "title": "a todo test"
+        }
+      ],
+      "endTime": 1782247075342,
+      "message": "  ● this one fails\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: 3\n    Received: 2\n\n      2 | test('add works', () => { expect(add(1, 2)).toBe(3); });\n      3 | test('sub works', () => { expect(sub(5, 2)).toBe(3); });\n    > 4 | test('this one fails', () => { expect(add(1, 1)).toBe(3); });\n        |                                                  ^\n      5 | test.skip('skipped one', () => { expect(true).toBe(true); });\n      6 | test.todo('a todo test');\n      7 |\n\n      at Object.toBe (src/math.test.js:4:50)\n",
+      "name": "/repo/src/math.test.js",
+      "startTime": 1782247075212,
+      "status": "failed",
+      "summary": ""
+    }
+  ],
+  "wasInterrupted": false
+}

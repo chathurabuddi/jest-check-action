@@ -4,5 +4,7 @@ coverage/
 *.log
 .DS_Store
 *.tsbuildinfo
-jest-results.json
+# Jest output produced by local/CI runs at the repo root (the committed
+# test fixture under __tests__/fixtures/ is intentionally tracked).
+/jest-results.json
 # dist/ is intentionally committed — it is the bundled action entrypoint.
