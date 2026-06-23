@@ -27,12 +27,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: DEBUG resolve @actions/github
-        run: |
-          echo "ls node_modules/@actions:"; ls -la node_modules/@actions || true
-          echo "github lib:"; ls -la node_modules/@actions/github/lib || true
-          node -e "console.log('resolved:', require.resolve('@actions/github'))" || echo "RESOLVE FAILED"
-
       - name: Check formatting
         run: npm run format:check
 
