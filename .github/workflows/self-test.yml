@@ -1,0 +1,45 @@
+name: Self-test
+
+# Dogfoods the action: runs this repo's own Jest suite and reports it with the
+# locally-built action, proving the end-to-end path (comment, annotations,
+# job summary, outputs) works on every PR.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  self-test:
+    name: Report own test suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest
+        run: npx jest --json --outputFile=jest-results.json --coverage --coverageReporters=json-summary --testLocationInResults --ci
+        continue-on-error: true
+
+      - name: Report results
+        id: report
+        uses: ./
+        with:
+          comment-marker: '<!-- jest-pr-reporter:self-test -->'
+          check-name: 'Self-test Jest Failures'
+
+      - name: Echo outputs
+        run: |
+          echo "success=${{ steps.report.outputs.success }}"
+          echo "passed=${{ steps.report.outputs.passed }}"
+          echo "coverage=${{ steps.report.outputs.coverage-pct }}%"

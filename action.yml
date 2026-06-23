@@ -1,0 +1,85 @@
+name: 'Jest PR Reporter'
+description: 'Turn Jest results into a sticky PR comment, inline check annotations, a job summary, and pass/fail gating.'
+author: 'Chathura Buddhika'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  token:
+    description: 'GitHub token used to post the comment and check annotations.'
+    required: false
+    default: ${{ github.token }}
+  results-file:
+    description: 'Path to the Jest JSON results file (jest --json --outputFile=...).'
+    required: false
+    default: 'jest-results.json'
+  coverage-file:
+    description: 'Path to the Jest coverage-summary.json (coverageReporters: json-summary). Optional; coverage sections are omitted when missing.'
+    required: false
+    default: 'coverage/coverage-summary.json'
+  run-tests:
+    description: 'When "true", the action runs `test-command` before reporting. When "false" (default), it consumes pre-existing result files produced by a prior step.'
+    required: false
+    default: 'false'
+  test-command:
+    description: 'Command used to run Jest when `run-tests` is "true". The required reporting flags are appended automatically.'
+    required: false
+    default: 'npm test'
+  working-directory:
+    description: 'Directory to resolve result/coverage files against and to run tests from.'
+    required: false
+    default: '.'
+  coverage-threshold:
+    description: 'Coverage percentage boundary used for PASS/WARN/FAIL status and the per-file breakdown.'
+    required: false
+    default: '80'
+  comment:
+    description: 'Post (and update in place) a sticky PR comment with the report.'
+    required: false
+    default: 'true'
+  comment-marker:
+    description: 'Hidden HTML marker that identifies the sticky comment. Use distinct markers to run multiple instances on one PR.'
+    required: false
+    default: '<!-- jest-pr-reporter -->'
+  annotations:
+    description: 'Post inline check-run annotations on failing test lines.'
+    required: false
+    default: 'true'
+  check-name:
+    description: 'Name of the check run created for failure annotations. Keep it distinct from the job-level check required by branch protection.'
+    required: false
+    default: 'Jest Failures'
+  job-summary:
+    description: 'Write the report to the Actions job summary.'
+    required: false
+    default: 'true'
+  fail-on-error:
+    description: 'Fail the action (non-zero exit) when any test failed.'
+    required: false
+    default: 'true'
+  max-items:
+    description: 'Maximum number of files / tests rendered in each collapsible section.'
+    required: false
+    default: '20'
+
+outputs:
+  success:
+    description: 'true when all tests passed, false otherwise.'
+  passed:
+    description: 'Number of passing tests.'
+  failed:
+    description: 'Number of failing tests.'
+  skipped:
+    description: 'Number of skipped/todo tests.'
+  total:
+    description: 'Total number of tests.'
+  coverage-pct:
+    description: 'Overall coverage percentage (mean of statements/branches/functions/lines), or empty when no coverage.'
+  duration:
+    description: 'Test run duration in seconds, or "—" when unavailable.'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

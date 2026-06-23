@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a problem with the action
+labels: ['bug']
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow snippet
+      description: The job/step where you use the action.
+      render: yaml
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Action & Jest versions
+      placeholder: 'jest-check-action@v1, jest 29.7.0'
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Action run logs or the shape of jest-results.json (redact as needed).
+      render: shell
